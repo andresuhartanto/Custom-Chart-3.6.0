@@ -414,7 +414,8 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
         for j in stride(from: 0, to: buffer.rects.count, by: 1)
         {
             let barRect = buffer.rects[j]
-
+            let xValue = barRect.origin.x
+            
             if (!viewPortHandler.isInBoundsLeft(barRect.origin.x + barRect.size.width))
             {
                 continue
@@ -431,7 +432,15 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 context.setFillColor(dataSet.color(atIndex: j).cgColor)
             }
             
-            context.fill(barRect)
+            if (j + 1 != buffer.rects.count) ? xValue != buffer.rects[j + 1].origin.x : true {
+                
+                let bezierPath = UIBezierPath(roundedRect: barRect, byRoundingCorners: [.topRight, .topLeft], cornerRadii: CGSize(width: 5, height: 5))
+                context.addPath(bezierPath.cgPath)
+
+                context.drawPath(using: .fill)
+            } else {
+                context.fill(barRect)
+            }
             
             if drawBorder
             {
