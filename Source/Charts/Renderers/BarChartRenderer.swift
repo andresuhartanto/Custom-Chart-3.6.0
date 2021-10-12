@@ -494,19 +494,6 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
         context.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: [])
     }
     
-    func yellowGradientImage(bounds:CGRect) -> UIImage?
-    {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.init(red: 255, green: 204, blue: 0, alpha: 1).cgColor, UIColor.init(red: 255, green: 158, blue: 0, alpha: 1).cgColor]
-        gradientLayer.bounds = bounds
-        UIGraphicsBeginImageContextWithOptions(gradientLayer.bounds.size, true, 0.0)
-        let context = UIGraphicsGetCurrentContext()
-        gradientLayer.render(in: context!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-    
     open func prepareBarHighlight(
         x: Double,
           y1: Double,
