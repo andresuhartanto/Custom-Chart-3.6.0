@@ -742,13 +742,17 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                                 
                                 if dataSet.isDrawValuesEnabled
                                 {
+//                                    let customValue = formatter.string(from: NSNumber(floatLiteral: value)) ?? ""
+                                    
+                                    var customValue = ""
+                                    
+                                    if vals[k] / (barData.yMax / 100) > 12.5 {
+                                        customValue = String(Int(vals[k]).roundedWithAbbreviations)
+                                    }
+                                    
                                     drawValue(
                                         context: context,
-                                        value: formatter.stringForValue(
-                                            vals[k],
-                                            entry: e,
-                                            dataSetIndex: dataSetIndex,
-                                            viewPortHandler: viewPortHandler),
+                                        value: customValue,
                                         xPos: x,
                                         yPos: y,
                                         font: valueFont,
