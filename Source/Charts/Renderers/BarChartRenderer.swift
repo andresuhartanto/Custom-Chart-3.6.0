@@ -602,7 +602,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                                     : (rect.origin.y + rect.size.height + negOffset),
                                 font: valueFont,
                                 align: .center,
-                                color: dataSet.valueTextColorAt(j))
+                                color: val == 0 ? .clear : dataSet.valueTextColorAt(j))
                         }
                         
                         if let icon = e.icon, dataSet.isDrawIconsEnabled
