@@ -94,7 +94,7 @@ open class DefaultAxisValueFormatter: NSObject, IAxisValueFormatter
         if let block = block {
             return block(value, axis)
         } else {
-            return formatter?.string(from: NSNumber(floatLiteral: value)) ?? ""
+            return Int(value).roundedWithAbbreviations ?? ""
         }
     }
 }

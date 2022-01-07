@@ -587,15 +587,21 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                         
                         let val = e.y
                         
+                        var customValue = ""
+                        if val / (barData.yMax / 100) > 12.5 {
+                            customValue = String(Int(val).roundedWithAbbreviations)
+                        }
+                        
                         if dataSet.isDrawValuesEnabled
                         {
                             drawValue(
                                 context: context,
-                                value: formatter.stringForValue(
-                                    val,
-                                    entry: e,
-                                    dataSetIndex: dataSetIndex,
-                                    viewPortHandler: viewPortHandler),
+//                                value: String(formatter.stringForValue(
+//                                    val,
+//                                    entry: e,
+//                                    dataSetIndex: dataSetIndex,
+//                                    viewPortHandler: viewPortHandler).split(separator: ".")[0]),
+                                value: customValue,
                                 xPos: x,
                                 yPos: val >= 0.0
                                     ? (rect.origin.y + posOffset)
